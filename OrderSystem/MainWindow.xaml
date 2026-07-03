@@ -7,6 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Button Content="開始" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ja-jp" Text="注文を開始します"/><LineBreak/><Run Language="ja-jp"/></TextBlock>
 
     </Grid>
 </Window>
