@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="OrderSystem.OrderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:OrderSystem"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+        
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <!-- 左側の画面-->
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+            <!--大分類カテゴリーのボタン群-->
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <!--中分類カテゴリーのボタン群-->
+        </StackPanel>
+        <DockPanel Grid.Row="2">
+            <Button Content="←" DockPanel.Dock="Left" Width="30"/>
+            <Button Content="→" DockPanel.Dock="Right" Width="30"/>
+            <WrapPanel>
+                <!--お寿司の画像ボタンを表示する部分-->
+            </WrapPanel>
+        </DockPanel>
+        <!--左下のボタン群-->
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal">
+            <Button Content="TOPへ" Width="100" Height="60" Margin="0,0,10,0"/>
+            <Button Content="注文履歴" Width="100" Height="60" Margin="0,0,0,0"/>
+        </StackPanel>
+
+        <!--右の画面-->
+        <!--右上の画像(Sourceを動的に変更)-->
+        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform"/>
+
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+            <!--右中央の数変更ボタン群-->
+            <StackPanel Orientation="Horizontal" >
+                <Button Content="-" Width="30" Height="30" Margin="50,0,0,0"/>
+                <TextBlock Text="1" Width="30" Height="30" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                <Button Content="+" Width="30" Height="30"/>
+            </StackPanel>
+            <!--右中央の注文リスト-->
+            <DataGrid Grid.Row="2" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=4}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="商品名" Binding="{Binding Name}" Width="90"/>
+                    <DataGridTextColumn Header="数量" Binding="{Binding Quantity}"/>
+                    <DataGridTemplateColumn Header="削除" Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="削除" Width="40" Height="20"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Content="注文確定" Width="150" Height="60" Margin="0,10,0,0"/>
+        </StackPanel>
+
+        <!--右下の会計確定ボタン-->
+        <Button Grid.Row="3" Grid.Column="1" Content="会計確定" Width="150" Height="60"/>
+
+
+    </Grid>
+</UserControl>
