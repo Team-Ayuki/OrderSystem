@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace OrderSystem
+namespace OrderSystem.View
 {
     /// <summary>
     /// OrderView.xaml の相互作用ロジック

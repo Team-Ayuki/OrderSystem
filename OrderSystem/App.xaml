@@ -2,10 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:OrderSystem"
-             xmlns:vm ="clr-namespace:OrderSystem.ViewModel"
+             xmlns:vm="clr-namespace:OrderSystem.ViewModel"
              xmlns:view="clr-namespace:OrderSystem.View"
              >
-    
     <Application.Resources>
         <DataTemplate DataType="{x:Type vm:OrderViewModel}">
             <view:OrderView/>
@@ -14,5 +13,10 @@
         <DataTemplate DataType="{x:Type vm:EndViewModel}">
             <view:EndView/>
         </DataTemplate>
+
+        <DataTemplate DataType="{x:Type vm:CheckOutViewModel}">
+            <view:CheckOutView/>
+        </DataTemplate>
+
     </Application.Resources>
 </Application>
