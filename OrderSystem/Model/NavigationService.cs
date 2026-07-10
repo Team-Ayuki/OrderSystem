@@ -9,12 +9,24 @@ namespace OrderSystem.Model
 {
     public class NavigationService : INavigationService
     {
-        public IPageViewModel CurrentViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public EventHandler? CurrentViewModelChanged { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        private readonly Dictionary<string, Func<IPageViewModel>> _factories = new();
+        public IPageViewModel CurrentViewModel 
+        {   get => _current; 
+        }
+        IPageViewModel INavigationService.CurrentViewModel { get => CurrentViewModel; set => throw new NotImplementedException(); }
+        public event EventHandler? CurrentViewModelChanged;
 
+        private IPageViewModel? _current;
+
+        public void Register(string Key, Func<IPageViewModel> factory)
+        {
+            _factories[Key] = factory;
+        }
+        
         public void NavigateTo(string pageKey)
         {
-            throw new NotImplementedException();
+            _current = _factories[pageKey]();
+            CurrentViewModelChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace OrderSystem.Model
 {
     public interface INavigationService
     {
-        public IPageViewModel CurrentViewModel { get; set; } 
-        public EventHandler? CurrentViewModelChanged { get; set; }
+        IPageViewModel CurrentViewModel { get; set; }
+        event EventHandler? CurrentViewModelChanged;
 
-        public void NavigateTo(string pageKey);
+        void NavigateTo(string pageKey);
     }
 }
