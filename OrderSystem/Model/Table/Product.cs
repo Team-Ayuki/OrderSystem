@@ -4,15 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrderSystem.Model
+namespace OrderSystem.Model.Table
 {
     public class Product
     {
-        public string name { get; private set; }
-        public decimal price { get; private set; }
-        public string imgFilePath { get; private set; }
-        public string bigCategory { get; private set; }
-        public string midCategory { get; private set; }
+        public int Id { get; set; }
+        public string name { get; set; }
+        public decimal price { get; set; }
+        public string imgFilePath { get; set; }
+        public string bigCategory { get; set; }
+        public string midCategory { get; set; }
+        public ICollection<Order> Orders { get; set; }
         public Product(string name, decimal price, string imgFilePath, string bigCategory, string midCategory)
         {
             this.name = name;
@@ -20,6 +22,10 @@ namespace OrderSystem.Model
             this.imgFilePath = imgFilePath;
             this.bigCategory = bigCategory;
             this.midCategory = midCategory;
+        }
+        public Product()
+        {
+
         }
     }
 }
