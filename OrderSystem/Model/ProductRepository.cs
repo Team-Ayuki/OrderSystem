@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Model
 {
-    internal class ProductRepository : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         public List<Product> getAll()
         {
