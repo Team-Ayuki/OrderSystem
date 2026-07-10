@@ -19,8 +19,6 @@ namespace OrderSystem
         public MainWindow()
         {
             InitializeComponent();
-            //aaaaaaa
-            //aaaaa
         }
     }
 }
