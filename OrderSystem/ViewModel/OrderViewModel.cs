@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.ViewModel
 {
-    class OrderViewModel: ViewModelBase,IPageViewModel
+    public class OrderViewModel: ViewModelBase,IPageViewModel
     {
         private string _title = "CheckOut";
         public string Title

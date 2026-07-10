@@ -2,7 +2,7 @@
 
 namespace OrderSystem.Common
 {
-    class RelayCommand<T> : System.Windows.Input.ICommand
+    public class RelayCommand<T> : System.Windows.Input.ICommand
     {
         private readonly Action<T> _execute;
         private readonly Predicate<T>? _canExecute;
