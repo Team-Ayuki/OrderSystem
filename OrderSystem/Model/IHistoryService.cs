@@ -9,6 +9,6 @@ namespace OrderSystem.Model
     public interface IHistoryService
     {
         public List<OrderItem> getHistory();
-        public void addHistory(OrderItem orderItem);
+        public void addHistory(List<OrderItem> orderItems);
     }
 }

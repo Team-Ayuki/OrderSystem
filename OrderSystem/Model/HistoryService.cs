@@ -8,14 +8,16 @@ namespace OrderSystem.Model
 {
     public class HistoryService : IHistoryService
     {
-        public void addHistory(OrderItem orderItem)
+        private readonly List<OrderItem> historyList = new List<OrderItem>();
+
+        public void addHistory(List<OrderItem> orderItems)
         {
-            throw new NotImplementedException();
+            historyList.AddRange(orderItems);
         }
 
         public List<OrderItem> getHistory()
         {
-            throw new NotImplementedException();
+            return historyList;
         }
     }
 }
