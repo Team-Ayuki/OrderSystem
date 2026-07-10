@@ -9,9 +9,20 @@ namespace OrderSystem.Model
 {
     public class ProductRepository : IProductRepository
     {
+        string _dbpath;
         public List<Product> getAll()
         {
-            throw new NotImplementedException();
+            List<Product> products = new List<Product>();
+            using (var db = new SushiDBContext())
+            {
+                products = db.Products.ToList();
+            }
+
+            return products;
+        }
+        ProductRepository(string dbpath) 
+        {
+            _dbpath = dbpath ?? string.Empty;
         }
     }
 }
