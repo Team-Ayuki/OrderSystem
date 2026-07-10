@@ -9,6 +9,7 @@ namespace OrderSystem.Model
 {
     public class OrderService : IOrderService
     {
+        private IOrderCart orderCart;
         public bool addProduct(Product product)
         {
             throw new NotImplementedException();
@@ -27,6 +28,11 @@ namespace OrderSystem.Model
         public bool reduceProduct(Product product)
         {
             throw new NotImplementedException();
+        }
+
+        public OrderService(IOrderCart orderCart)
+        {
+            this.orderCart = orderCart;
         }
     }
 }
