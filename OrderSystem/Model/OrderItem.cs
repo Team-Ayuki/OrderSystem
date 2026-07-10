@@ -12,7 +12,7 @@ namespace OrderSystem.Model
         private Product product;
         private int Count = 0;
 
-        public OrderItem(Product product, int count = 0)
+        public OrderItem(int iD, Product product, int count = 0)
         {
             this.product = product;
             this.Count = count;
