@@ -20,11 +20,21 @@ namespace OrderSystem.Model
 
         public bool CountPlus()
         {
+            if(Count >= 5)
+            {
+                return false;
+            }
+            this.Count++;
             return true;
         }
 
         public bool CountMinus()
         {
+            if (this.Count <= 0)
+            {
+                return false;
+            }
+            this.Count--;
             return true;
         }
     }
