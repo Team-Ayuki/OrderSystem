@@ -24,6 +24,8 @@ namespace OrderSystem.Model
         public DbSet<Order> Orders { get; set; }
 
         public DbSet<Bill> Bills { get; set; }
+        public DbSet<MidCategory> MidCategories { get; set; }
+        public DbSet<BigCategory> BigCategories { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

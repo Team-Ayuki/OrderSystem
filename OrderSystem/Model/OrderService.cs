@@ -10,6 +10,7 @@ namespace OrderSystem.Model
     public class OrderService : IOrderService
     {
         private IOrderCart orderCart;
+        private IHistoryService historyService;
         public bool addProduct(Product product)
         {
             throw new NotImplementedException();
@@ -30,9 +31,10 @@ namespace OrderSystem.Model
             throw new NotImplementedException();
         }
 
-        public OrderService(IOrderCart orderCart)
+        public OrderService(IOrderCart orderCart, IHistoryService historyService)
         {
             this.orderCart = orderCart;
+            this.historyService = historyService;
         }
     }
 }
