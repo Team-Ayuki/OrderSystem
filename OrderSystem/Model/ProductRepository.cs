@@ -20,7 +20,7 @@ namespace OrderSystem.Model
 
             return products;
         }
-        ProductRepository(string dbpath) 
+        public ProductRepository(string dbpath) 
         {
             _dbpath = dbpath ?? string.Empty;
         }
