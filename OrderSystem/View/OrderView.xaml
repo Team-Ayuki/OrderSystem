@@ -30,6 +30,23 @@
             <Button Content="→" DockPanel.Dock="Right" Width="30"/>
             <WrapPanel>
                 <!--お寿司の画像ボタンを表示する部分-->
+                <ItemsControl ItemsSource="{Binding CurrentProducts}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4" Rows="2"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="100" Height="60" Margin="5">
+                                <StackPanel>
+                                    <Image Source="{Binding imgFilePath}" Width="80" Height="80"/>
+                                    <TextBlock Text="{Binding name}" TextAlignment="Center"/>
+                                </StackPanel>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </WrapPanel>
         </DockPanel>
         <!--左下のボタン群-->

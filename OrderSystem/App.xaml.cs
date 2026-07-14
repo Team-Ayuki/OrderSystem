@@ -29,7 +29,7 @@ namespace OrderSystem
             var historyService = new HistoryService();
 
             var nav = new NavigationService();
-            nav.Register("Order", () => new OrderViewModel(orderService));
+            nav.Register("Order", () => new OrderViewModel(orderService,productRepository));
             nav.Register("CheckOut", () => new CheckOutViewModel(checkOutService, historyService));
             nav.Register("History", () => new HistoryViewModel(historyService));
 
