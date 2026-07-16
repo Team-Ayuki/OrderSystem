@@ -42,6 +42,20 @@ namespace OrderSystem.ViewModel
             set => SetField(ref _midCategories, value);
         }
 
+        private Product _selectedProduct;
+        public Product SelectedProduct
+        {
+            get => _selectedProduct;
+            set => SetField(ref _selectedProduct, value);
+        }
+
+        private ObservableCollection<OrderItem> _orderCart = new ObservableCollection<OrderItem>();
+        public ObservableCollection<OrderItem> orderCart
+        {
+            get => _orderCart;
+            set => SetField(ref _orderCart, value);
+        }
+
         private string _title = "Order";
         public string Title
         {
@@ -52,6 +66,8 @@ namespace OrderSystem.ViewModel
         public ICommand MidCategoryCommand { get; set; }
         public ICommand BigCategoryCommand { get; set; }
         public ICommand ProductCommand { get; set; }
+        public ICommand RightCommand { get; set; }
+        public ICommand LeftCommand { get; set; }
 
         public OrderViewModel(IOrderService orderService, IProductRepository productRepository, ISearchService searchService)
         {
@@ -63,18 +79,23 @@ namespace OrderSystem.ViewModel
             allproducts = productRepository.getAll().ToList();
             MidCategoryCommand = new RelayCommand<MidCategory>(m => MidCategoryExecute(m));
             BigCategoryCommand = new RelayCommand<BigCategory>(b => BigCategoryExecute(b));
-
+            RightCommand = new RelayCommand<object>(o => RightButtonExecute());
+            LeftCommand = new RelayCommand<object>(o => LeftButtonExecute());
+            ProductCommand = new RelayCommand<Product>(ProductButtonExecute);   
         }
         private void UpdateViewProducts()
         {
-            if (currentProducts.Count > pagecount * 6)
+            int startIndex = (pagecount - 1) * 6;
+            int remaining = currentProducts.Count - startIndex;
+            int takeCount = Math.Min(6, remaining);
+            if (takeCount <= 0)
             {
-                ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange((pagecount - 1) * 6, 6));
+                ViewProducts = new ObservableCollection<Product>();
             }
             else
             {
                 
-                ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange((pagecount - 1) * 6, currentProducts.Count));
+                ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange(startIndex, takeCount));
             }
         }
         
@@ -87,6 +108,31 @@ namespace OrderSystem.ViewModel
         private void BigCategoryExecute(BigCategory bigCategory)
         {
             MidCategories = new ObservableCollection<MidCategory>(bigCategory.MidCategories.ToList());
+        }
+
+        private void LeftButtonExecute()
+        {
+            if (pagecount > 1)
+            {
+                pagecount--;
+                UpdateViewProducts();
+            }
+
+        }
+        private void RightButtonExecute()
+        {
+            if (currentProducts.Count - 6 > 6 * (pagecount - 1))
+            {
+                pagecount++;
+                UpdateViewProducts();
+            }
+        }
+        private void ProductButtonExecute(Product product)
+        {
+            SelectedProduct = product;
+            //OrderServiceに商品追加の処理
+            orderService.addProduct(product);
+            orderCart = new ObservableCollection<OrderItem>(orderService.getOrderCart());
         }
     }
 }
