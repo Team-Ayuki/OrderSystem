@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderSystem.Model.Table;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,7 @@ namespace OrderSystem.Model
     public interface IHistoryService
     {
         public List<OrderItem> getHistory();
-        public void addHistory(OrderItem orderItem);
+        public void addHistory(List<OrderItem> orderItem);
+        public void Clear();
     }
 }

@@ -5,8 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrderSystem.View"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="1000" Background="White">
-        
+             d:DesignHeight="600" d:DesignWidth="1000" Background="Beige">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -19,8 +19,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- 左側の画面-->
-            <!--大分類カテゴリーのボタン群-->
-            <ItemsControl ItemsSource="{Binding BigCategories}">
+        <!--大分類カテゴリーのボタン群-->
+        <ItemsControl ItemsSource="{Binding BigCategories}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
@@ -28,33 +28,33 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button Content="{Binding Name}" Width="70" Height="50" Margin="5" 
+                    <Button Content="{Binding Name}" Width="110" Height="60" Margin="5,0,0,0" FontSize="24"
                             Command="{Binding DataContext.BigCategoryCommand,
                             RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                             CommandParameter="{Binding}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
-            </ItemsControl>
-            <!--中分類カテゴリーのボタン群-->
-            <ItemsControl ItemsSource="{Binding MidCategories}" Grid.Column="0" Grid.Row="1">
+        </ItemsControl>
+        <!--中分類カテゴリーのボタン群-->
+        <ItemsControl ItemsSource="{Binding MidCategories}" Grid.Column="0" Grid.Row="1">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Button Content="{Binding Name}" Width="70" Height="50" Margin="5" 
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" Width="90" Height="60" Margin="5,0,0,0" FontSize="18"
                                 Command="{Binding DataContext.MidCategoryCommand,
                                 RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
                                 CommandParameter="{Binding}"/>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
         <DockPanel Grid.Row="2">
-            <Button Content="←" DockPanel.Dock="Left" Width="30" Command="{Binding LeftCommand}"/>
-            <Button Content="→" DockPanel.Dock="Right" Width="30" Command="{Binding RightCommand}"/>
-                <!--お寿司の画像ボタンを表示する部分-->
+            <Button Content="←" DockPanel.Dock="Left" Width="30" Command="{Binding LeftCommand}" Background="LightSlateGray" Foreground="Black"/>
+            <Button Content="→" DockPanel.Dock="Right" Width="30" Command="{Binding RightCommand}" Background="LightSlateGray" Foreground="Black"/>
+            <!--お寿司の画像ボタンを表示する部分-->
             <ItemsControl ItemsSource="{Binding ViewProducts}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -79,42 +79,42 @@
         </DockPanel>
         <!--左下のボタン群-->
         <StackPanel Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal">
-            <Button Content="TOPへ" Width="100" Height="60" Margin="0,0,10,0"/>
-            <Button Content="注文履歴" Width="100" Height="60" Margin="0,0,0,0"/>
+            <Button Content="TOPへ" Width="100" Height="60" Margin="0,0,10,0" Command="{Binding TopCommand}"/>
+            <Button Content="注文履歴" Width="100" Height="60" Margin="0,0,0,0" Command="{Binding HistoryCommand}"/>
         </StackPanel>
 
         <!--右の画面-->
         <!--右上の画像(Sourceを動的に変更)-->
-        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform" Source="{Binding SelectedProduct.imgFilePath}"/>
+        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform" Source="{Binding SelectedProductFilePath}"/>
 
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
             <!--右中央の数変更ボタン群-->
             <StackPanel Orientation="Horizontal" >
-                <Button Content="-" Width="30" Height="30" Margin="50,0,0,0"/>
-                <TextBlock Text="1" Width="30" Height="30" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
-                <Button Content="+" Width="30" Height="30"/>
+                <Button Content="-" Width="30" Height="30" Margin="50,0,0,0" Command="{Binding MinusCommand}" CommandParameter="{Binding SelectedItem}"/>
+                <TextBlock Text="{Binding SelectedProductCount}" Width="30" Height="30" TextAlignment="Center" VerticalAlignment="Center" FontSize="20"/>
+                <Button Content="+" Width="30" Height="30" Command="{Binding PlusCommand}" CommandParameter="{Binding SelectedItem}"/>
             </StackPanel>
             <!--右中央の注文リスト-->
-            <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding orderCart}" AutoGenerateColumns="False" Height="240"
-                      SelectedItem="{Binding SelectedProduct}">
+            <Button Content="注文確定" Width="150" Height="60" Margin="0,10,0,0" Command="{Binding OrderCommand}"/>
+            <DataGrid ItemsSource="{Binding orderCart}" AutoGenerateColumns="False" Height="240"
+                      SelectedItem="{Binding SelectedItem}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="商品名" Binding="{Binding Name}" Width="90"/>
-                    <DataGridTextColumn Header="数量" Binding="{Binding Quantity}"/>
-                    <DataGridTemplateColumn Header="削除" Width="50">
+                    <DataGridTextColumn Header="商品名" Binding="{Binding product.name}" Width="2*"/>
+                    <DataGridTextColumn Header="数量" Binding="{Binding Count}" Width="*"/>
+                    <DataGridTemplateColumn Header="削除" Width="50" >
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="削除" Width="40" Height="20"/>
+                                <Button Content="削除" Width="40" Height="20" Command="{Binding DataContext.DeleteCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" CommandParameter="{Binding}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="注文確定" Width="150" Height="60" Margin="0,10,0,0"/>
         </StackPanel>
 
         <!--右下の会計確定ボタン-->
-        <Button Grid.Row="3" Grid.Column="1" Content="会計確定" Width="150" Height="60"/>
+        <Button Grid.Row="3" Grid.Column="1" Content="会計確定" Width="150" Height="60" Command="{Binding CheckOutCommand}"/>
 
 
     </Grid>

@@ -27,9 +27,10 @@ namespace OrderSystem.Model
                     itemAddflag = item.CountPlus();
                 }
             }
+
             if (!itemAddflag && OrderCartin.Count < 4)
             {
-                OrderCartin.Add(new OrderItem(1, product));
+                OrderCartin.Add(new OrderItem(product,1));
                 itemAddflag = true;
             }
             return itemAddflag;
@@ -50,7 +51,25 @@ namespace OrderSystem.Model
 
         public bool reduceCart(Product product)
         {
-            throw new NotImplementedException();
+            bool itemReduceflag = false;
+
+            foreach(var item in OrderCartin)
+            {
+                if (item.getProduct().Id == product.Id)
+                {
+                    itemReduceflag = item.CountMinus();
+                    if (!itemReduceflag)
+                    {
+                        OrderCartin.Remove(OrderCartin.First(x => x.getProduct().Id == product.Id));
+                        itemReduceflag = true;
+                    }
+                }
+            }
+            return itemReduceflag;
+        }
+        public bool removeCart(OrderItem orderItem)
+        {
+            return OrderCartin.Remove(orderItem);
         }
     }
 }

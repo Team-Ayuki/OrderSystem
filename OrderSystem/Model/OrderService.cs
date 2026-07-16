@@ -13,22 +13,36 @@ namespace OrderSystem.Model
         private IHistoryService historyService;
         public bool addProduct(Product product)
         {
-            throw new NotImplementedException();
+            return orderCart.addCart(product);
         }
 
         public OrderItem[] getOrderCart()
         {
-            throw new NotImplementedException();
+            return orderCart.getCart();
         }
 
         public bool Order()
         {
-            throw new NotImplementedException();
+            List<OrderItem> orderItems = orderCart.getCart().ToList();
+            
+            historyService.addHistory(orderItems);
+            
+
+            if (orderItems.Count > 0)
+            {
+                orderCart.Clear();
+            }
+            
+            return orderItems.Count > 0;
         }
 
         public bool reduceProduct(Product product)
         {
-            throw new NotImplementedException();
+            return orderCart.reduceCart(product);
+        }
+        public bool removeOrderItem(OrderItem orderItem)
+        {
+            return orderCart.removeCart(orderItem);
         }
 
         public OrderService(IOrderCart orderCart, IHistoryService historyService)

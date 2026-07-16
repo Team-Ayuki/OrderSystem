@@ -11,6 +11,7 @@ namespace OrderSystem.Model
     {
         public bool addCart(Product product);
         public bool reduceCart(Product product);
+        public bool removeCart(OrderItem orderItem);
         public OrderItem[] getCart();
         public void Clear();
 

@@ -8,6 +8,6 @@ namespace OrderSystem.Model
 {
     public interface IBillHistoryService
     {
-        public bool addHistory(List<OrderItem> orderList);
+        public int addHistory(List<OrderItem> orderList);
     }
 }
