@@ -16,8 +16,9 @@ namespace OrderSystem.Model
         {
             using (SushiDBContext context = new())
             {
-                midCategories = context.MidCategories.ToList();
-                bigCategories = context.BigCategories.ToList();
+                
+                midCategories = context.MidCategory.ToList();
+                bigCategories = context.BigCategory.ToList();
             }
 
         }

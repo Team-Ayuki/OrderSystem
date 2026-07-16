@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrderSystem.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="600" d:DesignWidth="1000" Background="White">
         
     <Grid>
         <Grid.RowDefinitions>
@@ -19,35 +19,59 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <!-- 左側の画面-->
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
             <!--大分類カテゴリーのボタン群-->
-        </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <ItemsControl ItemsSource="{Binding BigCategories}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button Content="{Binding Name}" Width="70" Height="50" Margin="5" 
+                            Command="{Binding DataContext.BigCategoryCommand,
+                            RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                            CommandParameter="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            </ItemsControl>
             <!--中分類カテゴリーのボタン群-->
-        </StackPanel>
+            <ItemsControl ItemsSource="{Binding MidCategories}" Grid.Column="0" Grid.Row="1">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding Name}" Width="70" Height="50" Margin="5" 
+                                Command="{Binding DataContext.MidCategoryCommand,
+                                RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         <DockPanel Grid.Row="2">
             <Button Content="←" DockPanel.Dock="Left" Width="30"/>
             <Button Content="→" DockPanel.Dock="Right" Width="30"/>
-            <WrapPanel>
                 <!--お寿司の画像ボタンを表示する部分-->
-                <ItemsControl ItemsSource="{Binding CurrentProducts}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="4" Rows="2"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Button Width="100" Height="60" Margin="5">
-                                <StackPanel>
-                                    <Image Source="{Binding imgFilePath}" Width="80" Height="80"/>
-                                    <TextBlock Text="{Binding name}" TextAlignment="Center"/>
-                                </StackPanel>
-                            </Button>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </WrapPanel>
+            <ItemsControl ItemsSource="{Binding ViewProducts}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Columns="3" Rows="2"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Button Width="210" Height="150" Margin="5">
+                            <StackPanel>
+                                <Image Source="{Binding imgFilePath}" Width="190" Height="120"/>
+                                <TextBlock Text="{Binding name}" TextAlignment="Center"/>
+                            </StackPanel>
+                        </Button>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </DockPanel>
         <!--左下のボタン群-->
         <StackPanel Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal">

@@ -17,6 +17,8 @@ namespace OrderSystem.ViewModel
         IOrderService orderService;
         IProductRepository productRepository;
         ISearchService searchService;
+
+        private int pagecount = 1;
         
 
         private List<Product> allproducts = new List<Product>();
@@ -26,8 +28,12 @@ namespace OrderSystem.ViewModel
             get => _viewProducts;
             set => SetField(ref _viewProducts, value);
         }
-
-        private List<BigCategory> bigCategories = new List<BigCategory>();
+        private List<BigCategory> _bigCategories = new List<BigCategory>();
+        public List<BigCategory> BigCategories 
+        { 
+            get => _bigCategories; 
+            set => SetField(ref _bigCategories, value); 
+        } 
 
         private ObservableCollection<MidCategory> _midCategories = new ObservableCollection<MidCategory>();
         public ObservableCollection<MidCategory> MidCategories
@@ -52,20 +58,29 @@ namespace OrderSystem.ViewModel
             this.orderService = orderService;
             this.productRepository = productRepository;
             this.searchService = searchService;
-            bigCategories = searchService.GetAllBigCategory();
+            BigCategories = searchService.getAllBigCategory();
             // Initialize any necessary properties or commands here
             allproducts = productRepository.getAll().ToList();
             MidCategoryCommand = new RelayCommand<MidCategory>(m => MidCategoryExecute(m));
             BigCategoryCommand = new RelayCommand<BigCategory>(b => BigCategoryExecute(b));
 
         }
-        private void UpdateViewProducts(int pagecount = 1)
+        private void UpdateViewProducts()
         {
-            ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange((pagecount - 1) * 6, 6));
+            if (currentProducts.Count > pagecount * 6)
+            {
+                ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange((pagecount - 1) * 6, 6));
+            }
+            else
+            {
+                
+                ViewProducts = new ObservableCollection<Product>(currentProducts.GetRange((pagecount - 1) * 6, currentProducts.Count));
+            }
         }
         
         private void MidCategoryExecute(MidCategory midcategory)
         {
+            pagecount = 1;
             currentProducts = searchService.searchProduct(midcategory).ToList();
             UpdateViewProducts();
         }

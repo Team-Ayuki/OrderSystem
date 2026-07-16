@@ -17,9 +17,10 @@ namespace OrderSystem.Model
             string name = product.name;
             decimal price = product.price;
             string imgFilePath = product.imgFilePath;
+            //あゆきへ、いったんコメントにしときます。始めるときは戻してね
             string bigCategory = product.bigCategory;
             string midCategory = product.midCategory;
-            OrderItem orderItem = new OrderItem(ID,name, price, imgFilePath, bigCategory, midCategory);
+            OrderItem orderItem = new OrderItem(ID, name, price, imgFilePath, bigCategory, midCategory);
             OderCartin.Add(orderItem);
         }
 

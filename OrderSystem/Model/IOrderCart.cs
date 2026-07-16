@@ -11,6 +11,7 @@ namespace OrderSystem.Model
     {
         public void addCart(Product product);
         public void reduceCart(Product product);
+        public Product getProduct();
         public OrderItem[] getCart();
         public void Clear();
 

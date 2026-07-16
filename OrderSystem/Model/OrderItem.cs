@@ -17,6 +17,10 @@ namespace OrderSystem.Model
             this.product = product;
             this.Count = count;
         }
+        public Product getProduct()
+        {
+            return product;
+        }
 
         public bool CountPlus()
         {
