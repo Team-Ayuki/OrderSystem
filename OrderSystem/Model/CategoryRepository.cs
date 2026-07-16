@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Model
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         List<MidCategory> midCategories = new List<MidCategory>();
         List<BigCategory> bigCategories = new List<BigCategory>();

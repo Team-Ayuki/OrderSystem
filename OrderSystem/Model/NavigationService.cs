@@ -11,7 +11,8 @@ namespace OrderSystem.Model
     {
         private readonly Dictionary<string, Func<IPageViewModel>> _factories = new();
         public IPageViewModel CurrentViewModel 
-        {   get => _current; 
+        {   
+            get => _current; 
         }
         IPageViewModel INavigationService.CurrentViewModel { get => CurrentViewModel; set => throw new NotImplementedException(); }
         public event EventHandler? CurrentViewModelChanged;

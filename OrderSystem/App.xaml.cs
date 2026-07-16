@@ -24,12 +24,15 @@ namespace OrderSystem
             base.OnStartup(e);
 
             var productRepository = new ProductRepository("db path");
-            var orderService = new OrderService(new OrderCart());
+            var categoryRepository = new CategoryRepository();
+            
             var checkOutService = new CheckOutService();
             var historyService = new HistoryService();
+            var searchService = new SearchService(productRepository,categoryRepository);
+            var orderService = new OrderService(new OrderCart(), historyService);
 
             var nav = new NavigationService();
-            nav.Register("Order", () => new OrderViewModel(orderService,productRepository));
+            nav.Register("Order", () => new OrderViewModel(orderService,productRepository,searchService));
             nav.Register("CheckOut", () => new CheckOutViewModel(checkOutService, historyService));
             nav.Register("History", () => new HistoryViewModel(historyService));
 
