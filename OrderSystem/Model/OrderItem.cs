@@ -45,10 +45,6 @@ namespace OrderSystem.Model
                 return false;
             }
         }
-        public Product getProduct()
-        {
-            return product;
-        }
         public bool CountMinus()
         {   
             if (Count > 0)
