@@ -17,19 +17,26 @@ namespace OrderSystem.Model
             this.product = product;
             this.Count = count;
         }
-        public Product getProduct()
-        {
-            return product;
-        }
+        
 
         public bool CountPlus()
         {
+            Count++;
             return true;
         }
 
         public bool CountMinus()
-        {
-            return true;
+        {   
+            if (Count > 0)
+                {
+                    Count--;
+                    return true;
+                }
+                else
+                {
+                    return false;
+            }
+            
         }
     }
 }
