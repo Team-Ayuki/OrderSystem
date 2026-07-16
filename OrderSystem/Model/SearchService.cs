@@ -7,18 +7,29 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Model
 {
-    public class SearchService
+    public class SearchService : ISearchService
     {
         private readonly IProductRepository _productRepository;
-        public SearchService(IProductRepository productRepository )
+        private readonly ICategoryRepository _categoryRepository;
+        List<Product> products = new();
+        public SearchService(IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            products = _productRepository.getAll();
         }
-        public List<Product> Search(string keyword)
+        public List<BigCategory> getAllBigCategory()
         {
-            var allProducts = _productRepository.getAll();
-            return allProducts.Where(p => p.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase)).ToList();
+            return _categoryRepository.getAllBigCategory();
         }
+        public List<MidCategory> searchMidCategory(BigCategory bigCategory)
+        {
+            return _categoryRepository.searchMidCategory(bigCategory);
+        }
+        public List<Product> searchProduct(MidCategory midCategory)
+        {
+            return products.Where(x => x.midCategoryId == midCategory.Id).ToList();
 
+        }
     }
 }

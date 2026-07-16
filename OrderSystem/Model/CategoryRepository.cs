@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace OrderSystem.Model
 {
-    public class CategoryRepository
+    public class CategoryRepository : ICategoryRepository
     {
         List<MidCategory> midCategories = new List<MidCategory>();
         List<BigCategory> bigCategories = new List<BigCategory>();
@@ -16,8 +16,9 @@ namespace OrderSystem.Model
         {
             using (SushiDBContext context = new())
             {
-                midCategories = context.MidCategories.ToList();
-                bigCategories = context.BigCategories.ToList();
+                
+                midCategories = context.MidCategory.ToList();
+                bigCategories = context.BigCategory.ToList();
             }
 
         }
