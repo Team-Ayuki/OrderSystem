@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:OrderSystem.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             d:DesignHeight="450" d:DesignWidth="800" Background="Beige">
     <Grid>
-        <Button Content="開始" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Command="{Binding StartCommand}"/>
-        <TextBlock HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="ja-jp" Text="注文を開始します"/><LineBreak/><Run Language="ja-jp"/></TextBlock>
+        <Button Content="開始" HorizontalAlignment="Center" Margin="0,322,0,0" VerticalAlignment="Top" Command="{Binding StartCommand}" Width="100" Height="80"/>
+        <TextBlock HorizontalAlignment="Center" Margin="0,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="32"><Run Language="ja-jp" Text="注文を開始します"/><LineBreak/><Run Language="ja-jp"/></TextBlock>
     </Grid>
 </UserControl>

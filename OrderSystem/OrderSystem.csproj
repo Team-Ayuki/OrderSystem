@@ -9,6 +9,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="View\images\aburimaguro.jpg" />
+    <None Remove="View\images\aburisalmon.jpg" />
+    <None Remove="View\images\ebi.jpg" />
+    <None Remove="View\images\ikura.jpg" />
+    <None Remove="View\images\maguro.jpg" />
+    <None Remove="View\images\nattoumaki.png" />
+    <None Remove="View\images\saba.jpg" />
+    <None Remove="View\images\salmon.jpg" />
+    <None Remove="View\images\uni.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.20" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
@@ -19,7 +31,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="View\images\aburimaguro.jpg" />
+    <Resource Include="View\images\aburisalmon.jpg" />
+    <Resource Include="View\images\ebi.jpg" />
+    <Resource Include="View\images\ikura.jpg" />
+    <Resource Include="View\images\maguro.jpg" />
+    <Resource Include="View\images\nattoumaki.png" />
+    <Resource Include="View\images\saba.jpg" />
+    <Resource Include="View\images\salmon.jpg" />
     <Resource Include="View\images\sushi.jpg" />
+    <Resource Include="View\images\uni.jpg" />
   </ItemGroup>
 
 </Project>
