@@ -12,7 +12,7 @@ namespace OrderSystem.Model
         List<OrderItem> OrderCartin = new List<OrderItem>();
        
 
-        public void addCart(Product product)
+        public bool addCart(Product product)
         {
             
             bool itemAddflag = false;
@@ -21,7 +21,7 @@ namespace OrderSystem.Model
 
             foreach(OrderItem item in OrderCartin)
             {
-                if (item.getProduct() == product)
+                if (item.getProduct().Id == product.Id)
                 {
                     itemAddflag = item.CountPlus();
                 }
@@ -31,7 +31,7 @@ namespace OrderSystem.Model
                 OrderCartin.Add(new OrderItem(1, product));
                 itemAddflag = true;
             }
-
+            return itemAddflag;
         }
 
         public void Clear()
@@ -48,7 +48,7 @@ namespace OrderSystem.Model
 
         }
 
-        public void reduceCart(Product product)
+        public bool reduceCart(Product product)
         {
             throw new NotImplementedException();
         }
