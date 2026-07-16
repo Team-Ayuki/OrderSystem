@@ -14,11 +14,11 @@ namespace OrderSystem.Model
 
         public void addCart(Product product)
         {
-            int ID = product.Id;
-          
-            OrderItem orderItem = new OrderItem(ID,product);
-            OderCartin.Add(orderItem);
+            int count = 1;
 
+            OrderItem orderItem = new OrderItem(count,product);
+            OderCartin.Add(orderItem);
+            
 
 
         }
