@@ -9,30 +9,42 @@ namespace OrderSystem.Model
 {
     public class OrderCart : IOrderCart
     {
-        List<OrderItem> OderCartin = new List<OrderItem>();
+        List<OrderItem> OrderCartin = new List<OrderItem>();
        
 
         public void addCart(Product product)
         {
-            int ID = product.Id;
+            //int ID = product.Id;
+            bool itemAddflag = false;
           
-            OrderItem orderItem = new OrderItem(ID,product);
-            OderCartin.Add(orderItem);
+            //OrderItem orderItem = new OrderItem(ID,product);
+            //OrderCartin.Add(orderItem);
 
-
+            foreach(OrderItem item in OrderCartin)
+            {
+                if (item.getProduct() == product)
+                {
+                    itemAddflag = item.CountPlus();
+                }
+            }
+            if (!itemAddflag && OrderCartin.Count < 4)
+            {
+                OrderCartin.Add(new OrderItem(1, product));
+                itemAddflag = true;
+            }
 
         }
 
         public void Clear()
         {
-            OderCartin.Clear();
+            OrderCartin.Clear();
 
         }
 
         public OrderItem[] getCart()
         {
             
-            return OderCartin.ToArray();
+            return OrderCartin.ToArray();
 
         }
 
