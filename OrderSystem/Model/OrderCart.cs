@@ -11,16 +11,26 @@ namespace OrderSystem.Model
     {
         List<OrderItem> OderCartin = new List<OrderItem>();
         OrderItem[] OderCart = new OrderItem[4];
+        int[] IntheCart = new int[4];
         public void addCart(Product product)
         {
            int ID = product.Id;
-            string name = product.name;
-            decimal price = product.price;
-            string imgFilePath = product.imgFilePath;
-            string bigCategory = product.bigCategory;
-            string midCategory = product.midCategory;
-            OrderItem orderItem = new OrderItem(ID,name, price, imgFilePath, bigCategory, midCategory);
-            OderCartin.Add(orderItem);
+            for (int i = 0; i < IntheCart.Length; i++)
+            {
+                if (IntheCart[i] == ID)
+                {
+
+                }
+                else
+                {
+                    OrderItem orderItem = new OrderItem(ID, product);
+                    OderCartin.Add(orderItem);
+                }
+
+
+            }
+
+            
         }
 
         public void Clear()
