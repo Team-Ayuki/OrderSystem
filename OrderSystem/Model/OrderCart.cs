@@ -14,11 +14,10 @@ namespace OrderSystem.Model
 
         public void addCart(Product product)
         {
-            //int ID = product.Id;
+            
             bool itemAddflag = false;
           
-            //OrderItem orderItem = new OrderItem(ID,product);
-            //OrderCartin.Add(orderItem);
+            
 
             foreach(OrderItem item in OrderCartin)
             {
@@ -40,6 +39,7 @@ namespace OrderSystem.Model
             OrderCartin.Clear();
 
         }
+
 
         public OrderItem[] getCart()
         {

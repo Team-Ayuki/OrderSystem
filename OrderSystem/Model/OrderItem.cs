@@ -24,7 +24,10 @@ namespace OrderSystem.Model
             Count++;
             return true;
         }
-
+        public Product getProduct()
+        {
+            return product;
+        }
         public bool CountMinus()
         {   
             if (Count > 0)
