@@ -52,8 +52,8 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         <DockPanel Grid.Row="2">
-            <Button Content="←" DockPanel.Dock="Left" Width="30"/>
-            <Button Content="→" DockPanel.Dock="Right" Width="30"/>
+            <Button Content="←" DockPanel.Dock="Left" Width="30" Command="{Binding LeftCommand}"/>
+            <Button Content="→" DockPanel.Dock="Right" Width="30" Command="{Binding RightCommand}"/>
                 <!--お寿司の画像ボタンを表示する部分-->
             <ItemsControl ItemsSource="{Binding ViewProducts}">
                 <ItemsControl.ItemsPanel>
@@ -63,7 +63,11 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Button Width="210" Height="150" Margin="5">
+                        <Button Width="210" Height="150" Margin="5" 
+                                Command="{Binding DataContext.ProductCommand,
+                                RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                                CommandParameter="{Binding}"
+>
                             <StackPanel>
                                 <Image Source="{Binding imgFilePath}" Width="190" Height="120"/>
                                 <TextBlock Text="{Binding name}" TextAlignment="Center"/>
@@ -81,7 +85,7 @@
 
         <!--右の画面-->
         <!--右上の画像(Sourceを動的に変更)-->
-        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform"/>
+        <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform" Source="{Binding SelectedProduct.imgFilePath}"/>
 
 
         <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
@@ -92,7 +96,8 @@
                 <Button Content="+" Width="30" Height="30"/>
             </StackPanel>
             <!--右中央の注文リスト-->
-            <DataGrid Grid.Row="2" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=4}" AutoGenerateColumns="False">
+            <DataGrid Grid.Row="2" Grid.Column="1" ItemsSource="{Binding orderCart}" AutoGenerateColumns="False" Height="240"
+                      SelectedItem="{Binding SelectedProduct}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="商品名" Binding="{Binding Name}" Width="90"/>
                     <DataGridTextColumn Header="数量" Binding="{Binding Quantity}"/>
