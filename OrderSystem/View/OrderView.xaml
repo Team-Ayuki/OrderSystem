@@ -20,7 +20,7 @@
         </Grid.ColumnDefinitions>
         <!-- 左側の画面-->
         <!--大分類カテゴリーのボタン群-->
-        <ItemsControl ItemsSource="{Binding BigCategories}">
+        <ItemsControl ItemsSource="{Binding BigCategories}" Background="DarkGreen">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left"/>
@@ -78,7 +78,7 @@
             </ItemsControl>
         </DockPanel>
         <!--左下のボタン群-->
-        <StackPanel Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal">
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="1" Orientation="Horizontal" Background="DarkGreen">
             <Button Content="TOPへ" Width="100" Height="60" Margin="0,0,10,0" Command="{Binding TopCommand}"/>
             <Button Content="注文履歴" Width="100" Height="60" Margin="0,0,0,0" Command="{Binding HistoryCommand}"/>
         </StackPanel>
@@ -88,7 +88,7 @@
         <Image Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" Stretch="Uniform" Source="{Binding SelectedProductFilePath}"/>
 
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical">
+        <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Vertical" Background="Bisque">
             <!--右中央の数変更ボタン群-->
             <StackPanel Orientation="Horizontal" >
                 <Button Content="-" Width="30" Height="30" Margin="50,0,0,0" Command="{Binding MinusCommand}" CommandParameter="{Binding SelectedItem}"/>
