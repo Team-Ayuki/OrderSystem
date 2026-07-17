@@ -24,6 +24,8 @@ namespace OrderSystem.Model
                 if (item.getProduct().Id == product.Id)
                 {
                     itemAddflag = item.CountPlus();
+
+                    if (itemAddflag) break;
                 }
             }
 

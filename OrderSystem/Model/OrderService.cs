@@ -35,7 +35,6 @@ namespace OrderSystem.Model
             
             return orderItems.Count > 0;
         }
-
         public bool reduceProduct(Product product)
         {
             return orderCart.reduceCart(product);
