@@ -31,6 +31,10 @@
                     <Button Content="{Binding Name}" Width="110" Height="60" Margin="5,0,0,0" FontSize="24"
                             Command="{Binding DataContext.BigCategoryCommand,
                             RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
+                            Background="White"
+                            BorderBrush="Firebrick"
+                            Foreground="Black"
+                            BorderThickness="2"
                             CommandParameter="{Binding}"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
@@ -66,11 +70,12 @@
                         <Button Width="210" Height="150" Margin="5" 
                                 Command="{Binding DataContext.ProductCommand,
                                 RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"
-                                CommandParameter="{Binding}"
->
+                                CommandParameter="{Binding}">
                             <StackPanel>
-                                <Image Source="{Binding imgFilePath}" Width="190" Height="120"/>
+                                <Image Source="{Binding imgFilePath}" Width="190" Height="100"/>
+                                
                                 <TextBlock Text="{Binding name}" TextAlignment="Center"/>
+                                <TextBlock Text="{Binding price, StringFormat={}{0:N0}円}" TextAlignment="Center"/>
                             </StackPanel>
                         </Button>
                     </DataTemplate>
