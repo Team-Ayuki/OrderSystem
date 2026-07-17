@@ -12,16 +12,15 @@ namespace OrderSystem.Model.Table
         public string name { get; set; }
         public decimal price { get; set; }
         public string imgFilePath { get; set; }
-        public string bigCategory { get; set; }
-        public string midCategory { get; set; }
+        public int midCategoryId { get; set; }
+        public MidCategory midCategory { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public Product(string name, decimal price, string imgFilePath, string bigCategory, string midCategory)
+        public Product(string name, decimal price, string imgFilePath, int midCategory)
         {
             this.name = name;
             this.price = price;
             this.imgFilePath = imgFilePath;
-            this.bigCategory = bigCategory;
-            this.midCategory = midCategory;
+            this.midCategoryId = midCategory;
         }
         public Product()
         {

@@ -9,33 +9,54 @@ namespace OrderSystem.Model
 {
     public class OrderItem
     {
-        private Product product;
-        private int Count = 0;
+        private Product _product;
+        private int _count = 0;
+
+        public int Count 
+        { 
+            get { return _count; } 
+            set { _count = value; }
+        }
+        public Product product
+        {
+            get { return _product; }
+            set { _product = value; }
+        }
 
         public OrderItem(Product product, int count = 0)
         {
-            this.product = product;
+            this._product = product;
             this.Count = count;
+        }
+        public Product getProduct()
+        {
+            return _product;
         }
 
         public bool CountPlus()
         {
-            if(Count >= 5)
+            if (Count < 4)
+            {
+                Count++;
+                return true;
+            }
+            else
             {
                 return false;
             }
-            this.Count++;
-            return true;
         }
-
         public bool CountMinus()
-        {
-            if (this.Count <= 0)
-            {
-                return false;
+        {   
+            if (Count > 0)
+                {
+                    Count--;
+                    return true;
+                }
+                else
+                {
+                    return false;
             }
-            this.Count--;
-            return true;
+            
         }
     }
 }

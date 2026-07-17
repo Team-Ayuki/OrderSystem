@@ -23,7 +23,7 @@ namespace OrderSystem.ViewModel
             _navService.CurrentViewModelChanged += (_, _) => OnPropertyChanged(nameof(CurrentViewModel));
             NavigateCommand = new RelayCommand<string>(key => _navService.NavigateTo((string)key!));
 
-            _navService.NavigateTo("Order"); // 初期画面
+            _navService.NavigateTo("Start"); // 初期画面
         }
     }
 }

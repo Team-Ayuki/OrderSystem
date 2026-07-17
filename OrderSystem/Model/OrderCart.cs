@@ -9,24 +9,67 @@ namespace OrderSystem.Model
 {
     public class OrderCart : IOrderCart
     {
-        public void addCart(Product product)
+        List<OrderItem> OrderCartin = new List<OrderItem>();
+       
+
+        public bool addCart(Product product)
         {
-            throw new NotImplementedException();
+            
+            bool itemAddflag = false;
+          
+            
+
+            foreach(OrderItem item in OrderCartin)
+            {
+                if (item.getProduct().Id == product.Id)
+                {
+                    itemAddflag = item.CountPlus();
+                }
+            }
+
+            if (!itemAddflag && OrderCartin.Count < 4)
+            {
+                OrderCartin.Add(new OrderItem(product,1));
+                itemAddflag = true;
+            }
+            return itemAddflag;
         }
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            OrderCartin.Clear();
+
         }
+
 
         public OrderItem[] getCart()
         {
-            throw new NotImplementedException();
+            
+            return OrderCartin.ToArray();
+
         }
 
-        public void reduceCart(Product product)
+        public bool reduceCart(Product product)
         {
-            throw new NotImplementedException();
+            bool itemReduceflag = false;
+
+            foreach(var item in OrderCartin)
+            {
+                if (item.getProduct().Id == product.Id)
+                {
+                    itemReduceflag = item.CountMinus();
+                    if (!itemReduceflag)
+                    {
+                        OrderCartin.Remove(OrderCartin.First(x => x.getProduct().Id == product.Id));
+                        itemReduceflag = true;
+                    }
+                }
+            }
+            return itemReduceflag;
+        }
+        public bool removeCart(OrderItem orderItem)
+        {
+            return OrderCartin.Remove(orderItem);
         }
     }
 }

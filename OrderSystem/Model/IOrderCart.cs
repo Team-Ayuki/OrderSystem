@@ -9,8 +9,9 @@ namespace OrderSystem.Model
 {
     public interface IOrderCart
     {
-        public void addCart(Product product);
-        public void reduceCart(Product product);
+        public bool addCart(Product product);
+        public bool reduceCart(Product product);
+        public bool removeCart(OrderItem orderItem);
         public OrderItem[] getCart();
         public void Clear();
 

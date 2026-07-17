@@ -8,7 +8,7 @@ namespace OrderSystem.Model
 {
     public interface ICheckOutService
     {
-        public decimal checkOut(List<OrderItem> orderList);
+        public int checkOut(List<OrderItem> orderList);
 
     }
 }

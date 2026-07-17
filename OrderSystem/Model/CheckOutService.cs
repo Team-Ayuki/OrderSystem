@@ -8,9 +8,15 @@ namespace OrderSystem.Model
 {
     public class CheckOutService : ICheckOutService
     {
-        public decimal checkOut(List<OrderItem> orderList)
+        IBillHistoryService billHistoryService;
+        public CheckOutService(IBillHistoryService billHistoryService) 
         {
-            throw new NotImplementedException();
+            this.billHistoryService = billHistoryService;
+        }
+
+        public int checkOut(List<OrderItem> orderList)
+        {
+            return billHistoryService.addHistory(orderList);
         }
     }
 }

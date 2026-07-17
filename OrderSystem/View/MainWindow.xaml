@@ -5,12 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrderSystem.View"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="1000" >
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="71*"/>
-            <RowDefinition Height="146*"/>
-        </Grid.RowDefinitions>
-
+        <ContentControl Content="{Binding CurrentViewModel}" />
     </Grid>
 </Window>

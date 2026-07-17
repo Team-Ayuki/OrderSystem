@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrderSystem.Model.Table;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,16 +9,33 @@ namespace OrderSystem.Model
 {
     public class HistoryService : IHistoryService
     {
-        private readonly List<OrderItem> historyList = new List<OrderItem>();
-
+        private List<OrderItem> OrderList = new();
         public void addHistory(List<OrderItem> orderItems)
         {
-            historyList.AddRange(orderItems);
+            foreach (OrderItem orderItem in orderItems)
+            {
+                if (!OrderList.Contains(orderItem))
+                {
+                    OrderList.Add(orderItem);
+                }
+                else
+                {
+                    var currentItem = OrderList.FirstOrDefault(x => x.product == orderItem.product);
+                    if (currentItem != null)
+                    {
+                        currentItem.Count += orderItem.Count;
+                    }
+                }
+            }
         }
 
         public List<OrderItem> getHistory()
         {
-            return historyList;
+            return OrderList;
+        }
+        public void Clear()
+        {
+            OrderList.Clear();
         }
     }
 }
